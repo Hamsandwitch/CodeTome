@@ -3,7 +3,9 @@ using ElevenNote.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -110,5 +112,27 @@ namespace ElevenNote.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        // this action will create text file 'your_file_name.txt' with data from
+        // string variable 'string_with_your_data', which will be downloaded by
+        // your browser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public FileStreamResult CreateFile(int id)
+        {
+            var detail = _svc.Value.GetNoteById(id);
+            //todo: add some data from your database into that string:
+            var string_with_your_data = $"{detail}";
+
+            var byteArray = Encoding.ASCII.GetBytes(string_with_your_data);
+            var stream = new MemoryStream(byteArray);
+
+            return File(stream, "text/plain", "HeresYourNote.txt");
+        }
+
     }
+
+
+
 }
