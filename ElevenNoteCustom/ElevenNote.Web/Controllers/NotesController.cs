@@ -1,4 +1,5 @@
-﻿using ElevenNote.Models;
+﻿using ElevenNote.data;
+using ElevenNote.Models;
 using ElevenNote.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -16,6 +17,7 @@ namespace ElevenNote.Web.Controllers
     {
         private readonly Lazy<NoteService> _svc;
 
+        public Type ApplicationDbContext { get; private set; }
 
         public NotesController()
         {
@@ -114,23 +116,24 @@ namespace ElevenNote.Web.Controllers
         }
 
 
-        // this action will create text file 'your_file_name.txt' with data from
-        // string variable 'string_with_your_data', which will be downloaded by
-        // your browser
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // Download button, uses database id as key to pull and generate value of entry, to a usable string.
+
         public FileStreamResult CreateFile(int id)
         {
-            var detail = _svc.Value.GetNoteById(id);
-            //todo: add some data from your database into that string:
-            var string_with_your_data = $"{detail}";
+            
+            var note = _svc.Value.GetNoteById(id);
 
-            var byteArray = Encoding.ASCII.GetBytes(string_with_your_data);
+            var fileContent = $"## {note.Title} ## \r\nCreated: {note.CreatedUtc} ##\r\n \r\n       {note.Content}";
+            var byteArray = Encoding.ASCII.GetBytes(fileContent);
             var stream = new MemoryStream(byteArray);
+        
+            return File(stream, "text/plain", $"{note.Title}.txt");
+         }
 
-            return File(stream, "text/plain", "HeresYourNote.txt");
+        private object GetNoteById(object id)
+        {
+            throw new NotImplementedException();
         }
-
     }
 
 

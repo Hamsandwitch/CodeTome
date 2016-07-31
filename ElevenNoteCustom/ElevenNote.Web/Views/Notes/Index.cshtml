@@ -6,9 +6,10 @@
 
 <h2>All Notes</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<div>
+    @Html.ActionLink("Create Note", "Create", new { @class = "btn btn-default" })
+</div>
 
 @if (TempData.ContainsKey("SaveResult"))
 { 
@@ -20,8 +21,8 @@
     </div>
 
 }
-<table class="table">
-    <tr>
+<table class="table" table border=1 frame=void rules=rows>
+    <tr style="border-bottom: 1px solid #182527;">
         <th>
             @Html.DisplayNameFor(model => model.NoteId)
         </th>
@@ -39,7 +40,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr style="border-bottom: 1px dotted silver;">
             <td>
                 @Html.DisplayFor(modelItem => item.NoteId)
             </td>
@@ -59,13 +60,14 @@
                 <br />
                 @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
                 <br />
-                @Html.ActionLink("Download Text File", "CreateFile", new { id = item.NoteId })
             </td>
         </tr>
+
     }
 
 </table>
-
+<br />
+<br />
 @section scripts {
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {

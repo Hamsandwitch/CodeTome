@@ -19,9 +19,11 @@ namespace ElevenNote.Models
         public bool IsStarred { get; set; }
 
         [Display(Name = "Created")]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTimeOffset CreatedUtc { get; set; }
 
         [Display(Name = "Modified")]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTimeOffset? ModifiedUtc { get; set; }
 
     }
