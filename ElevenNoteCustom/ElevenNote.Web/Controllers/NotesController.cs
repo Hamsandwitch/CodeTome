@@ -123,7 +123,7 @@ namespace ElevenNote.Web.Controllers
             
             var note = _svc.Value.GetNoteById(id);
 
-            var fileContent = $"## {note.Title} ## \r\nCreated: {note.CreatedUtc} ##\r\n \r\n       {note.Content}";
+            var fileContent = $"## {note.Title} ## \r\nCreated: {note.CreatedUtc:MM-dd-yyyy} \r\n \r\n       {note.Content}";
             var byteArray = Encoding.ASCII.GetBytes(fileContent);
             var stream = new MemoryStream(byteArray);
         

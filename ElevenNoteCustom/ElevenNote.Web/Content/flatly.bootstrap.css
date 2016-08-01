@@ -7023,3 +7023,6 @@ a.list-group-item-danger.active:focus {
 .popover {
   color: #2c3e50;
 }
+.notfirst:hover {
+    background-color: rgba(107, 255, 219, 0.59);
+}

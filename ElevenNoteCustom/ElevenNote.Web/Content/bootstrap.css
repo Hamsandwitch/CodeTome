@@ -6754,4 +6754,7 @@ button.close {
     display: none !important;
   }
 }
+.notfirst:hover {
+    background-color: rgba(107, 255, 219, 0.21);
+}
 /*# sourceMappingURL=bootstrap.css.map */

@@ -39,8 +39,8 @@
     </tr>
 
     @foreach (var item in Model)
-    {
-        <tr style="border-bottom: 1px dotted silver;">
+    {//TODO:add :hover highlighter effect.
+        <tr class="notfirst" style="border-bottom: 1px dotted silver;">
             <td>
                 @Html.DisplayFor(modelItem => item.NoteId)
             </td>
