@@ -118,7 +118,7 @@ namespace ElevenNote.Web.Controllers
 
         // Download button, uses database id as key to pull and generate value of entry, to a usable string.
 
-        public FileStreamResult CreateFile(int id)
+        public ActionResult CreateFile(int id)
         {
             
             var note = _svc.Value.GetNoteById(id);
